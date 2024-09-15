@@ -1,0 +1,42 @@
+# Ignore node_modules (dependencies will be installed inside the Docker container)
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Ignore build output (since it's regenerated in the container)
+dist
+out-tsc
+
+# Ignore local environment files
+src/environments/environment*.ts
+
+# Ignore IDE/project-specific files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Ignore MacOS-specific files
+.DS_Store
+
+# Ignore Git
+.git
+.gitignore
+
+# Ignore Docker-related files (optional, as these might be needed if you are copying them into the container)
+.dockerignore
+Dockerfile
+docker-compose*
+
+# Ignore logs
+logs
+*.log
+
+# Ignore coverage reports
+coverage
+
+# Ignore temporary files
+tmp
+temp

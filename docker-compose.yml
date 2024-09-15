@@ -1,0 +1,42 @@
+version: "3.8"
+
+services:
+  sql_server_db:
+    container_name: sqlserverc
+    image: mcr.microsoft.com/mssql/server
+    ports:
+      - "1677:1433"
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "A@hmed9091"
+    restart: unless-stopped
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+
+  frontend:
+    build:
+      context: ./front
+      dockerfile: dockerfile
+    ports:
+      - "6601:80"
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+  backend:
+    build:
+      context: ./backend.api
+      dockerfile: dockerfile
+    ports:
+      - "6600:80"
+      - "6605:80"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  sqlserver_data:
